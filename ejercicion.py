@@ -96,5 +96,27 @@ def menu_principal(index):
             else:
                 print("Opción no válida.")
 
+# Función principal para ejecutar el sistema
+def gestor_de_notas():
+    while True:
+        print("\n--- Gestor de Notas ---")
+        print("1. Registrarse")
+        print("2. Iniciar sesión")
+        print("3. Salir")
+        
+        opcion = input("Elige una opción: ")
+        
+        if opcion == "1":
+            registrar_usuario()
+        elif opcion == "2":
+            index = login()
+            if index is not None:
+                menu_principal(index)
+        elif opcion == "3":
+            print("Saliendo del sistema...")
+            break
+        else:
+            print("Opción no válida.")
 
-
+# Ejecutar el gestor de notas
+gestor_de_notas()
