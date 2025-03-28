@@ -50,3 +50,51 @@ def consultar_notas(index):
     else:
         print("Acción no permitida. Solo los estudiantes pueden consultar notas.")
 
+# Función para agregar notas (solo profesores)
+def agregar_notas(index):
+    if roles[index] == "profesor":
+        print("\n--- Agregar Notas ---")
+        estudiante = input("Ingresa el nombre del estudiante: ")
+        if estudiante in usuarios:
+            estudiante_index = usuarios.index(estudiante)
+            nueva_nota = float(input("Ingresa la nueva nota: "))
+            notas[estudiante_index].append(nueva_nota)
+            promedio_notas[estudiante_index] = sum(notas[estudiante_index]) / len(notas[estudiante_index])
+            print(f"Nota registrada para {estudiante}. Nuevo promedio: {promedio_notas[estudiante_index]}")
+        else:
+            print("Estudiante no encontrado.")
+    else:
+        print("Acción no permitida. Solo los profesores pueden agregar notas.")
+
+# Función para mostrar el menú principal
+def menu_principal(index):
+    while True:
+        if roles[index] == "estudiante":
+            print("\n--- Menú Estudiante ---")
+            print("1. Consultar notas")
+            print("2. Salir")
+            opcion = input("Elige una opción: ")
+            
+            if opcion == "1":
+                consultar_notas(index)
+            elif opcion == "2":
+                break
+            else:
+                print("Opción no válida.")
+        
+        elif roles[index] == "profesor":
+            print("\n--- Menú Profesor ---")
+            print("1. Agregar notas")
+           
+            print("3. Salir")
+            opcion = input("Elige una opción: ")
+            
+            if opcion == "1":
+                agregar_notas(index)
+            elif opcion == "3":
+                break
+            else:
+                print("Opción no válida.")
+
+
+
